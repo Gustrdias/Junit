@@ -1,6 +1,5 @@
 package br.com.ticktacktoe.model;
 
-import java.util.Arrays;
 
 public class Board {
 	public static int MAX_POSITIONS = 3;

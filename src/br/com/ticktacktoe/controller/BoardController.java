@@ -3,12 +3,16 @@ package br.com.ticktacktoe.controller;
 import java.util.Arrays;
 
 import br.com.ticktacktoe.model.Board;
-import br.com.ticktacktoe.model.Keyboard;
 
 public class BoardController {
 	String mold;
 	private Board board=new Board();
 	
+	public BoardController() {
+		this.initPlays();
+		this.createMold();
+		this.PrintMold();
+	}
 	public void initPlays() {
 		for (String[] play : this.board.getPlays()) {
 		    Arrays.fill(play,Board.EMPTY_POSITIONS);

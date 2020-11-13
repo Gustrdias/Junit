@@ -21,9 +21,5 @@ public class KeyboardController {
 	public Keyboard getKeyboard() {
 		return keyboard;
 	}
-	public void setKeyboard(Keyboard keyboard) {
-		this.keyboard = keyboard;
-	}
-
 	
 }

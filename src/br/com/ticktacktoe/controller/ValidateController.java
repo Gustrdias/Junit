@@ -1,7 +1,6 @@
 package br.com.ticktacktoe.controller;
 
 import br.com.ticktacktoe.model.Board;
-import br.com.ticktacktoe.model.Keyboard;
 
 public class ValidateController {
 	private boolean pass=true;

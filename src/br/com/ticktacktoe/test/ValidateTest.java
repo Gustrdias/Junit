@@ -8,7 +8,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import br.com.ticktacktoe.controller.BoardController;
-import br.com.ticktacktoe.controller.KeyboardController;
 import br.com.ticktacktoe.controller.ValidateController;
 
 

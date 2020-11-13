@@ -9,6 +9,7 @@ public class ActionsController {
 	private ValidateController validate= new ValidateController();
 	private CheckController checkControl= new CheckController();
 	
+	
 	public void nextTurn() {
 		changePlayer();
 		changeMarked();
@@ -25,26 +26,19 @@ public class ActionsController {
 		else
 			this.actions.setMarked("X");
 	}
+	
 	public void loopGame() {
-		
-		this.boardControl.initPlays();
-		this.boardControl.createMold();
-		this.boardControl.PrintMold();
 		
 		while (!actions.isEndGame()) {
 			keyPressRow();
 			keyPressColumn();
-			if(!this.validate.positionCompleted(this.keyboardControl.getKeyboard().getRow(),this.keyboardControl.getKeyboard().getColumn(), this.boardControl.getBoard())) {
-				playersLoop();
-			}else {
-				System.out.println("Posição já preenchida");
-			}
+			changePlayerGame();
 		}
 	}
 	public void keyPressRow() {
 		this.keyboardControl.rowChoice(actions.getPlayer());
 		if(!this.validate.isValidRow(this.keyboardControl.getKeyboard().getKey())) {
-			keyPressRow();
+			this.keyPressRow();
 			return;
 		}
 		this.keyboardControl.getKeyboard().rowReceiveKey();
@@ -52,21 +46,30 @@ public class ActionsController {
 	public void keyPressColumn() {
 		this.keyboardControl.columnChoice();
 		if(!this.validate.isValidColumn(this.keyboardControl.getKeyboard().getKey())) {
-			keyPressColumn();
+			this.keyPressColumn();
 			return;
 		}
 		this.keyboardControl.getKeyboard().columnReceiveKey();
 	}
-	
-	public void playersLoop() {
-		
+	public void draw() {
 		this.boardControl.changeValueMold(this.keyboardControl.getKeyboard().getRow(),this.keyboardControl.getKeyboard().getColumn(),actions.getMarked());
 		this.boardControl.createMold();
 		this.boardControl.PrintMold();
+	}
+	public void resultGame() {
 		this.checkControl.isWinnerGame(this.boardControl.getBoard(),this.actions);
 		this.checkControl.isTied(this.boardControl.getBoard(),this.actions);
-		nextTurn();
 	}
+	public void changePlayerGame() {
+		if(!this.validate.positionCompleted(this.keyboardControl.getKeyboard().getRow(),this.keyboardControl.getKeyboard().getColumn(), this.boardControl.getBoard())) {
+			this.draw();
+			this.resultGame();
+			this.nextTurn();
+		}else {
+			System.out.println("Posição já preenchida");
+		}
+	}
+	
 	public BoardController getBoard() {
 		return this.boardControl;
 	}

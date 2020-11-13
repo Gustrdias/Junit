@@ -43,20 +43,17 @@ public class ActionsTest {
 	public void playLoopTest() {
 		this.actionsControl.getKeyboardControl().getKeyboard().setRow(1);
 		this.actionsControl.getKeyboardControl().getKeyboard().setColumn(1);
-		this.actionsControl.playersLoop();
+		
+		this.actionsControl.changePlayerGame();
 		assertEquals(2,this.actionsControl.getActions().getPlayer());
 	}
 	@Test
 	public void playLoopWrongTest() {
-		this.actionsControl.getKeyboardControl().getKeyboard().setRow(4);
+		this.actionsControl.getKeyboardControl().getKeyboard().setRow(1);
 		this.actionsControl.getKeyboardControl().getKeyboard().setColumn(1);
-		//this.actionsControl.playersLoop();
+		this.actionsControl.draw();
+		this.actionsControl.changePlayerGame();
 		assertEquals(1,this.actionsControl.getActions().getPlayer());
 	}
-	/*@Test
-	public void endGameTest() {
-		this.actionsControl.loopGame();
-		assertTrue(actionsControl.getActions().isEndGame());
-	}*/
 	
 }
